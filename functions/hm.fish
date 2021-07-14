@@ -1,3 +1,3 @@
-function hm --wraps "home-manage" --description 'alias hm home-manager'
+function hm --wraps "home-manager" --description 'alias hm home-manager'
     home-manager $argv;
 end
