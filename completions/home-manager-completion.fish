@@ -6,7 +6,7 @@ function __home_manager_generations
     for i in (home-manager generations)
         set -l gen_id (echo $i | cut -d " " -f 5)
         set -l gen_datetime (echo $i | cut -d " " -f 1-2)
-        set -l gen_hash (echo $i | grep -o "\w*\-home" | cut -d " " -f 1)
+        set -l gen_hash (echo $i | grep -o "\w*\-home" | cut -d "-" -f 1)
         echo $gen_id\t$gen_datetime $gen_hash
     end
 end
