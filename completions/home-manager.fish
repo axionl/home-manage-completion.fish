@@ -4,15 +4,16 @@
 ### SubCommands
 function __home_manager_generations
     for i in (home-manager generations)
-        set -l gen_id (echo $i | cut -d " " -f 5)
-        set -l gen_datetime (echo $i | cut -d " " -f 1-2)
-        set -l gen_hash (echo $i | grep -o "\w*\-home" | cut -d "-" -f 1)
+        set -l split (string split " " $i)
+        set -l gen_id $split[5]
+        set -l gen_datetime $split[1..2]
+        set -l gen_hash (string match -r '\w{32}' $i)
         echo $gen_id\t$gen_datetime $gen_hash
     end
 end
 
 complete -c home-manager -n "__fish_use_subcommand" -f -a "help" -d "Print home-manager help"
-complete -c home-manager -n "__fish_use_subcommand" -f -a "edit" -d "Open the home configuration in $EDITOR"
+complete -c home-manager -n "__fish_use_subcommand" -f -a "edit" -d 'Open the home configuration in $EDITOR'
 complete -c home-manager -n "__fish_use_subcommand" -f -a "build" -d "Build configuration into result directory"
 complete -c home-manager -n "__fish_use_subcommand" -f -a "instantiate" -d "Instantiate the configuration and print the resulting derivation"
 complete -c home-manager -n "__fish_use_subcommand" -f -a "switch" -d "Build and activate configuration"
