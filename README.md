@@ -6,5 +6,5 @@
 > https://github.com/jorgebucaran/fisher
 
 ```fish
-$ fisher add axionl/home-manage-completion.fish
+fisher install axionl/home-manage-completion.fish
 ```
